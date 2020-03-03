@@ -1,4 +1,4 @@
-var noteData = require("../db/db.json");
+var db = require("../db/db.json")
 var uniqid = require('uniqid')
 
 module.exports = function(app) {
@@ -8,11 +8,11 @@ module.exports = function(app) {
     });
 
     app.post("/api/notes", function(req,res){
-        const newNoteData = req.body;
+        const newNote = req.body;
         const id = uniqid()
-        newNoteData.id = id;
-        db.push(newNoteData)
-        res.json(newNoteData)
+        newNote.id = id;
+        db.push(newNote)
+        res.json(newNote)
     });
 
     app.delete("/api/notes", function(req,res){
