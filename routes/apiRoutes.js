@@ -20,9 +20,9 @@ module.exports = function(app) {
 
     app.delete("/api/notes/:id", function(req,res){
        const newNoteIndex = db.findIndex(function(note){
-        return newNote.id === req.params.id;   
+        return note.id === req.params.id;   
        });
-       db.slice(newNoteIndex, 0);
+       db.filter(newNoteIndex);
        res.json(db);
     })
 
