@@ -2,6 +2,7 @@ var db = require("../db/db.json")
 var uniqid = require('uniqid')
 var fs = require('fs');
 
+
 module.exports = function(app) {
 
     app.get("/api/notes", function(req,res){
@@ -14,6 +15,11 @@ module.exports = function(app) {
         newNote.id = id;
         db.push(newNote);
         res.json(db)
+        newnoteJ = JSON.stringify(newNote)
+        fs.appendFile("/db/db.json", newnoteJ, function(err){
+            if (err) throw err;
+            console.log("Saved")
+        })
         
         
     });
