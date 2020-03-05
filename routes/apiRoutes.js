@@ -28,7 +28,7 @@ module.exports = function(app) {
        const newNoteIndex = db.findIndex(function(note){
         return note.id === req.params.id;   
        });
-       const filtered = db.splice(newNoteIndex);
+       const filtered = db.splice(newNoteIndex, 1);
        res.json(filtered);
        filteredJ = JSON.stringify(db)
        filteredA = [filteredJ]
