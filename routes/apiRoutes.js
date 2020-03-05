@@ -1,7 +1,7 @@
 var db = require("../db/db.json")
 var uniqid = require('uniqid')
 var fs = require('fs');
-
+var path = require('path')
 
 module.exports = function(app) {
 
@@ -14,13 +14,14 @@ module.exports = function(app) {
         const newNote = req.body;
         newNote.id = id;
         db.push(newNote);
-        res.json(db)
-        newnoteJ = JSON.stringify(newNote)
-        fs.appendFile("/db/db.json", newnoteJ, function(err){
+        res.json(db);
+        newnoteJ = JSON.stringify(newNote);
+        dbJ = JSON.stringify(db)
+        dbA = [newnoteJ,dbJ]
+        fs.writeFile("./db/db.json", dbA, function(err){
             if (err) throw err;
-            console.log("Saved")
+            console.log("SAved")
         })
-        
         
     });
 
