@@ -30,8 +30,9 @@ module.exports = function(app) {
        });
        const filtered = db.splice(newNoteIndex);
        res.json(filtered);
-       filteredJ = JSON.stringify(filtered)
+       filteredJ = JSON.stringify(db)
        filteredA = [filteredJ]
+       console.log(filteredA)
        fs.writeFile("./db/db.json", filteredA, function(err){
         if (err) throw err;
         console.log("SAved")
